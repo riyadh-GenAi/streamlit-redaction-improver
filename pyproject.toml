@@ -2,7 +2,7 @@
 name = "001-streamlit-redaction-improver"
 version = "0.1.0"
 description = ""
-authors = ["julio colomer <info@aiaccelera.com>"]
+authors = [" Riyadh <riyadhgenai@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
