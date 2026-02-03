@@ -1,6 +1,13 @@
+import os
 import streamlit as st
 from langchain import PromptTemplate
 from langchain_groq import ChatGroq
+
+groq_api_key = (
+    st.secrets.get("GROQ_API_KEY")
+    or os.getenv("GROQ_API_KEY")
+)
+
 
 
 
@@ -70,22 +77,6 @@ with col2:
     st.write("Contact with riyadhgenai@gmail.com to build your AI Projects")
 
 
-#Input OpenAI API Key
-st.markdown("## Enter Your Groq API Key")
-
-
-def get_groq_api_key():
-    input_text = st.text_input(
-        label="Groq API Key ",
-        placeholder="Ex: gsk_...",
-        key="groq_api_key_input",
-        type="password"
-    )
-    return input_text
-
-groq_api_key = get_groq_api_key()
-
-
 
 # Input
 st.markdown("## Enter the text you want to re-write")
@@ -118,7 +109,7 @@ st.markdown("### Your Re-written text:")
 
 if draft_input:
     if not groq_api_key:
-        st.warning('Please insert Groq API Key.', icon="⚠️")
+        st.error("Groq API key is not configured on the server.")
         st.stop()
 
     llm = load_LLM(groq_api_key=groq_api_key)
